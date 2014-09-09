@@ -1,0 +1,47 @@
+body {
+  font: normal normal normal 12px/normal arial; 
+  color: #333;
+}
+
+ 
+p {
+    line-height: 18px;
+    margin-bottom: 20px;
+}
+
+.padding10px {
+	padding:10px;
+ }
+
+.displayblock {
+	display:block;
+}
+
+.margintop25px {
+	margin-top:25px;
+}
+
+.margintop10px {
+	margin-top:10px;
+}
+
+.margintop20px {
+	margin-top:20px;
+}
+
+.strong {
+    font-weight:bold;
+}
+
+.verticalalignmiddle {
+  vertical-align:middle;
+}
+
+.noborder {
+ border:0px;
+}
+
+ .nobordernobackground {
+  border:0px !important;
+  background:none !important;
+ }

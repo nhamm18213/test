@@ -1,0 +1,51 @@
+<?php
+/**
+ * @file
+ * Code for the NYSED Content Type Resource Page feature.
+ */
+
+include_once 'nysed_ct_resource_page.features.inc';
+
+/**
+ * Implements hook_COMPONENT_alter().
+ */
+function nysed_ct_resource_page_field_default_fields_alter(&$fields) {
+  $fields_to_alter = array(
+    'node-resource_page_ela-field_subject_thumbnail',
+    'node-resource_page-field_subject_thumbnail',
+    'node-resource_page_math-field_subject_thumbnail',
+  );
+  foreach ($fields_to_alter as $field_name) {
+    if (isset($fields[$field_name])) {
+      $fields[$field_name]['field_config']['settings']['default_image'] = variable_get('nysed_ct_resource_page_default_image_fid', 0);
+    }
+  }
+}
+
+/**
+ * Implements hook_apachesolr_index_documents_alter().
+ */
+function nysed_ct_resource_page_apachesolr_index_documents_alter(array &$documents, $entity, $entity_type, $env_id) {
+  $subject_types = array(
+    'resource_page',
+    'resource_page_math',
+    'resource_page_ela',
+  );
+  if (in_array($entity->type, $subject_types)) {
+    if (is_array($documents)) {
+      foreach ($documents as $key => $document) {
+        $node_wrapper = entity_metadata_wrapper($entity_type, $entity);
+        $file = $node_wrapper->field_subject_thumbnail->value();
+        if (isset($file['uri'])) {
+          $documents[$key]->setField('ss_field_subject_thumbnail', image_style_url('square_thumbnail', $file['uri']));
+        }
+        else {
+          $field = field_info_field('field_subject_thumbnail');
+          $uri = file_load($field['settings']['default_image']);
+          $image_uri = image_style_url('square_thumbnail', $uri);
+          $documents[$key]->setField('ss_field_subject_thumbnail', $image_uri);
+        }
+      }
+    }
+  }
+}

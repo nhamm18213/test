@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NYSED Group Resource Page feature.
+ */
+
+include_once 'nysed_ct_group_resource_page.features.inc';

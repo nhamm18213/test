@@ -1,0 +1,16 @@
+name = NYSED Cache Configuration
+description = Configures the purge and cache expiration modules
+core = 7.x
+package = Features
+php = 5.2.4
+version = 7.x-1.0
+project = nysed_cache_configuration
+dependencies[] = ctools
+dependencies[] = expire
+dependencies[] = purge
+dependencies[] = rules
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:1
+features[rules_config][] = rules_purge_cache
+features[variable][] = preprocess_js

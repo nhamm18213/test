@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NYSED Content Type Basic feature.
+ */
+
+include_once 'nysed_ct_basic.features.inc';

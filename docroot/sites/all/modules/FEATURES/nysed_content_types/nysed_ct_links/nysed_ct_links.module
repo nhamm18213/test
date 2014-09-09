@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NYSED Links feature.
+ */
+
+include_once 'nysed_ct_links.features.inc';

@@ -1,0 +1,3 @@
+name = Media Upload Remove
+description = Removes the upload tab from the media browser
+core = 7.x

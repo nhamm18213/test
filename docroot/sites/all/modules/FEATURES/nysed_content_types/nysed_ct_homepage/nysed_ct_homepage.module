@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NYSED Homepage feature.
+ */
+
+include_once 'nysed_ct_homepage.features.inc';

@@ -1,0 +1,67 @@
+ul.quicktabs-tabs.quicktabs-style-engageny{
+  padding:0 5px 0 0;
+  font-weight:bold;
+  height:19px;
+  margin:0;
+}
+ul.quicktabs-tabs.quicktabs-style-engageny a{
+  text-decoration:none;
+}
+ul.quicktabs-tabs.quicktabs-style-engageny a:hover{
+  color:#555;
+}
+ul.quicktabs-tabs.quicktabs-style-engageny li{
+  color: #282828;
+  font-size: 18px;
+  line-height: 20px;
+  margin-bottom: 15px;
+  font-family: "CartoGothicStdRegular";
+}
+
+ul.quicktabs-tabs.quicktabs-style-engageny li a{
+  color: #fff !important;
+  text-decoration:underline;
+  }
+
+ul.quicktabs-tabs.quicktabs-style-engageny li.last a{
+  border-left:1px solid #fff;
+  padding-left:5px;
+  margin-left:2px;
+}
+
+ul.quicktabs-tabs.quicktabs-style-engageny li.first.last a{
+  border:0px;
+  padding-right:0px;
+}
+
+ul.quicktabs-tabs.quicktabs-style-engageny li.first.last a:hover{
+   color: #fff !important;
+}
+
+ul.quicktabs-tabs.quicktabs-style-engageny li.active a{
+  text-decoration:none;
+}
+
+/*
+ul.quicktabs-tabs.quicktabs-style-engageny li:hover{
+  border:1px solid #ccc;
+  border-bottom:none;
+}
+ul.quicktabs-tabs.quicktabs-style-engageny li.active{
+  border:1px solid #aaa;
+  border-bottom:1px solid #fff;
+  background-color:#fff;
+}
+ul.quicktabs-tabs.quicktabs-style-engageny li.active a{
+  color:#027AC6;
+}
+*/
+
+.quicktabs-style-engageny table, .quicktabs-style-engageny table tbody td {
+	box-shadow:none !important;
+}
+
+.quicktabs-style-engageny tr.even, .quicktabs-style-engageny tr.odd {
+	border-bottom:0px !important;
+}
+

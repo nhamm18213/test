@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NYSED Group Resource Video feature.
+ */
+
+include_once 'nysed_ct_group_resource_video.features.inc';

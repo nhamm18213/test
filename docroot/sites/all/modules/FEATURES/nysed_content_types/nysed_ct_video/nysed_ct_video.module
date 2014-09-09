@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * Code for the NYSED Content Type Video feature.
+ */
+
+include_once 'nysed_ct_video.features.inc';
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function nysed_ct_video_views_pre_render(&$view) {
+  if ($view->name == 'video_thumbnail') {
+    foreach ($view->result as $k => $result) {
+      // Get the marked_new_till date field.
+      $value = $result->field_field_marked_new_till[0]['raw']['value'];
+      // Ensure the date field is set.
+      if (!empty($value)) {
+        // If the marked new till field is greater than the request time it
+        // should be marked as new.
+        if ($value > REQUEST_TIME) {
+          // Alter the node_created to invoke theme_mark function to mark the
+          // node as new.
+          $view->result[$k]->node_changed = $value;
+          // Alter the history_timestamp to invoke the theme_mark function to
+          // mark the node as new.
+          $view->result[$k]->history_timestamp = NULL;
+        }
+      }
+    }
+  }
+}

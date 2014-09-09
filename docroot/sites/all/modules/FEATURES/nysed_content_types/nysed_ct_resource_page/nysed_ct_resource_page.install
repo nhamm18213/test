@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * Module install file
+ */
+
+/**
+ * Implements hook_install().
+ */
+function nysed_ct_resource_page_install() {
+  drupal_mkdir('public://default_images');
+  $image_path = drupal_get_path('module', 'nysed_ct_resource_page') . '/images/ccslogo.gif';
+  if (file_exists($image_path)) {
+    $file = file_save_data(file_get_contents($image_path), 'public://default_images/ccslogo.gif', FILE_EXISTS_RENAME);
+    if ($file->fid) {
+      variable_set('nysed_ct_resource_page_default_image_fid', $file->fid);
+    }
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function nysed_ct_resource_page_uninstall() {
+  $fid = variable_get('nysed_ct_resource_page_default_image_fid', 0);
+  if ($fid) {
+    $file = file_load($fid);
+    db_query("DELETE FROM {file_managed} WHERE fid = :fid", array('fid' => $fid));
+    file_delete($file);
+  }
+  variable_del('nysed_ct_resource_page_default_image_fid');
+}

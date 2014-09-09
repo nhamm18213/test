@@ -1,0 +1,58 @@
+<?php
+/**
+ *	@file
+ *		install file for nysed_qa module
+ */
+
+define  ('NYSED_QA_VAR_GOOGLEANALYTICS_ACCOUNT', 'UA-38297328-1');
+define  ('NYSED_QA_VAR_MOLLOM_PUBLIC_KEY', 'd3ccb457278578e9e951a170c9686be8');
+define  ('NYSED_QA_VAR_MOLLOM_PRIVATE_KEY', '1cba501cd72aeee80b7759d3baf34b9e');
+
+
+/**
+ *	Implements hook_enable
+ */ 
+function nysed_qa_enable() {
+	global $conf;
+	// Create log variable for future restore
+	$logged_vars = array ('mollom_private_key', 'mollom_public_key', 'googleanalytics_account');	
+	foreach ($logged_vars as $var) {
+		if (isset($conf[$var])) {
+			// Create log variable		
+			variable_set('nysed_qa_var_log_'.$var, variable_get($var, NULL));			
+		}
+		else {
+			// Other wise, we will need to remove logged variable if its exists		
+			variable_del('nysed_qa_var_log_'.$var);
+		}
+		
+	}
+	// Reset google analytic account so no confusion to live site
+	variable_set('googleanalytics_account', NYSED_QA_VAR_GOOGLEANALYTICS_ACCOUNT);	
+	// Reset mollom keys to test account so no confusion to live site
+	variable_set('mollom_public_key', NYSED_QA_VAR_MOLLOM_PUBLIC_KEY);	
+	variable_set('mollom_private_key', NYSED_QA_VAR_MOLLOM_PRIVATE_KEY);
+}
+
+/**
+ *	Implements hook_disable
+ */ 
+function nysed_qa_disable() {
+	global $conf;
+	$restore_vars = array ('mollom_private_key', 'mollom_public_key', 'googleanalytics_account');
+	foreach ($restore_vars as $var) {
+		if (isset($conf['nysed_qa_var_log_'.$var])) {
+			// Restore variable from logged variable
+			variable_set($var, variable_get('nysed_qa_var_log_'.$var, NULL));			
+			// Removed logged variable to avoid future confusion
+			variable_del('nysed_qa_var_log_'.$var);
+		}
+		else {
+			//	Just remove variable 
+			//	if a logged variable is not exists and corresponed variable is equal to default constant qa value
+			if (defined(strtoupper('NYSED_QA_VAR_'.$var)) && (variable_get($var, NULL) == constant(strtoupper('NYSED_QA_VAR_'.$var)))) {
+				variable_del($var);
+			}
+		}
+	}
+}

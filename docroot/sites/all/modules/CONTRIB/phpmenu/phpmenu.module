@@ -1,0 +1,117 @@
+<?php
+
+/**
+ * @file
+ * Enables the use of PHP code in menus
+ */
+
+
+/**
+ * Implements hook_form_alter();
+ */
+function phpmenu_form_alter(&$form, &$form_state, $form_id) {
+
+  if ($form_id == 'menu_edit_item' && user_access('execute php code in menu')) {
+
+    $mlid = $form['mlid']['#value'];
+    $phpmenu = variable_get('phpmenu', array());
+
+    $form['menu']['phpmenu'] = array(
+      '#type' => 'textarea',
+      '#title' => 'PHP Code',
+      '#default_value' => isset($phpmenu[$mlid]['phpmenu']) ? $phpmenu[$mlid]['phpmenu'] : '',
+      '#description' => t('PHP code - <strong>do not include &lt;?php ?> tags</strong>. This code should return a value.'),
+    );
+
+    $form['menu']['phpmenu_override'] = array(
+      '#type' => 'checkbox',
+      '#title' => 'Override menu item',
+      '#description' => t('If you override menu item, PHP code above should return just standard HTML code.'),
+      '#default_value' => isset($phpmenu[$mlid]['phpmenu_override']) ? $phpmenu[$mlid]['phpmenu_override'] : FALSE,
+    );
+
+    $form['menu']['phpmenu_position'] = array(
+      '#type' => 'select',
+      '#title' => 'Position',
+      '#description' => t('Set here if PHP code should be printed before of after menu item.'),
+      '#options' => array(0 => t('before'), 1 => t('after')),
+      '#default_value' => isset($phpmenu[$mlid]['phpmenu_position']) ? $phpmenu[$mlid]['phpmenu_position'] : 1,
+    );
+
+    $form['#submit'][] = 'phpmenu_menu_edit_item_submit';
+  }
+}
+
+/**
+ * Implements hook_permission();
+ */
+function phpmenu_permission() {
+  return array(
+    'execute php code in menu' => array(
+      'title' => 'execute PHP code',
+      'description' => t('Allow users to run arbitrary PHP code in menus.'),
+      'restrict access' => TRUE,
+    )
+  );
+}
+
+
+/**
+ * Form submission handler for menu_edit_item.
+ *
+ * @see phpmenu_form_alter()
+ */
+function phpmenu_menu_edit_item_submit($form, &$form_state) {
+
+  $stored = variable_get('phpmenu', array());
+  $mlid = $form_state['values']['mlid'];
+
+  $stored[$mlid]['phpmenu'] = $form_state['values']['phpmenu'];
+  $stored[$mlid]['phpmenu_override'] = $form_state['values']['phpmenu_override'];
+  $stored[$mlid]['phpmenu_position'] = $form_state['values']['phpmenu_position'];
+
+  variable_set('phpmenu', $stored);
+}
+
+/**
+ * Implements hook_theme_registry_alter();
+ */
+function phpmenu_theme_registry_alter(&$theme_registry) {
+  $theme_registry['menu_link']['function'] = 'phpmenu_menu_link';
+}
+
+
+/**
+ * Implements theme_menu_item_link();
+ */
+function phpmenu_menu_link($variables) {
+
+  $phpmenu = &drupal_static(__FUNCTION__);
+  if (!isset($phpmenu)) {
+    $phpmenu = variable_get('phpmenu', array());
+  }
+
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  $mlid = $element['#original_link']['mlid'];
+  if (array_key_exists($mlid, $phpmenu) && !$phpmenu[$mlid]['phpmenu_override']) {
+    $sub_menu = eval($phpmenu[$mlid]['phpmenu']);
+  }
+
+  // if menu override
+  if (isset($phpmenu[$mlid]) && $phpmenu[$mlid]['phpmenu_override']) {
+    return $phpmenu[$mlid]['phpmenu'];
+  }
+
+  if ($element['#below']) {
+    $sub_menu .= drupal_render($element['#below']);
+  }
+
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+  if (isset($phpmenu[$mlid]) && $phpmenu[$mlid]['phpmenu_position'] == 0) {
+    return '<li' . drupal_attributes($element['#attributes']) . '>' . $sub_menu . $output . "</li>\n";
+  }
+  return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}
+

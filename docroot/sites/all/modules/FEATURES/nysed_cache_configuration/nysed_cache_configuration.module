@@ -1,0 +1,55 @@
+<?php
+/**
+ * @file
+ * Drupal needs this blank file.
+ */
+
+/**
+ * Implements hook_expire_cache_alter().
+ */
+function nysed_cache_configuration_expire_cache_alter(&$expire, &$node, &$paths) {
+  if (isset($node) && isset($node->nid)) {
+    $sql = <<<SQL
+      SELECT uri FROM {file_managed} fm WHERE fid
+      IN (SELECT fid FROM {file_usage} WHERE id = :nid)
+SQL;
+    $result = db_query($sql, array(':nid' => $node->nid));
+
+    foreach ($result as $record) {
+      $path = file_create_url($record->uri);
+      if (isset($path)) {
+        $expire[] = str_replace($GLOBALS['base_url'] . '/', '', $path);
+        $expire[] = drupal_get_path_alias('node/' . $node->nid);
+      }
+    }
+  }
+}
+
+function nysed_cache_configuration_preprocess_page(&$vars) {
+  // @TODO Do this with path_breadcrumb module in Engage2.0.
+  $search_id = 'core_search';
+  $search_page = apachesolr_search_page_load($search_id);
+  $current_path = current_path();
+  $current_path_parts = explode('/', $current_path);
+  $search_page_path = $search_page['search_path'];
+  $keys = array_pop($current_path_parts);
+
+  if (stristr($current_path, $search_page_path)) {
+    $title = apachesolr_search_get_value_title($search_id, $keys);
+    $current_breadcrumb = drupal_get_breadcrumb();
+    drupal_set_title($title);
+    array_pop($current_breadcrumb);
+    array_pop($current_breadcrumb);
+    drupal_set_breadcrumb($current_breadcrumb);
+  }
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function nysed_cache_configuration_views_api() {
+  return array(
+    'api' => 3,
+    'template path' => drupal_get_path('module', 'nysed_cache_configuration') . '/templates',
+  );
+}

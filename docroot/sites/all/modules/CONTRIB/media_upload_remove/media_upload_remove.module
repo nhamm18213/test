@@ -1,0 +1,5 @@
+<?php
+function media_upload_remove_media_browser_plugins_alter(&$plugins)
+{
+unset($plugins['upload']);
+}

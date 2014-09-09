@@ -1,0 +1,41 @@
+/* general */
+body { font-family: "Trebuchet MS", verdana, sans-serif; font-size: 76%;}
+
+#outer {  width: 80%; margin: auto; padding: 10px; font-size: 1em; }
+
+img { border: 0; }
+
+/* pageheader */
+.logo { float: left; margin-bottom: 20px;}
+
+.accred { float: right; color: #444; }
+.accred strong { display: block; margin-bottom: 5px; }
+
+div.intro { clear: both; }
+
+h2 { color: #0B0F4C; }
+
+.newsreaders { margin-bottom: 10px; }
+
+/* feed details */
+.feednametitle { color: #FF0297; margin-bottom: 2px; }
+.feednameinfo { float: left; margin-bottom: 45px; padding: 0; width: 70%; font-size: 1em; }
+.feednameinfo1 { font-size: 16px;float: left; margin: 0; padding: 0;margin-right:10px; }
+.builddate { float: right; font-size: .96em; color: #FF0297; font-style: italic; margin: 0; padding: 0;}
+
+.heading { margin-bottom: 30px; }
+
+/* items */
+
+#items { clear: both; }
+.item{border-bottom:1px solid #CCC; margin-bottom:20px;}
+.header {font-size:16px; margin: 0 0 0 0; color: #4F7FC9; }
+.header a {font-size:16px; color: #4F7FC9 ; }
+.header a:hover { font-size:16px;color: #4F7FC9; }
+.header a.visited { font-size:16px;color: #4F7FC9; }
+
+.pubdate { margin: 0 0 0 0;  font-size: .96em; color: #666; font-style: italic; }
+
+.itembody { padding-bottom: 10px; } 
+
+.field-item img { float: left; margin: 0 10px 10px 0;}

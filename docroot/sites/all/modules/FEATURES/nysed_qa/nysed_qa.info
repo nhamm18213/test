@@ -1,0 +1,12 @@
+name = NYSED QA
+description = Provide internal debug configurations and some bonus tools for QA, such as mail rediretion.
+core = 7.x
+package = Features
+php = 5.2.4
+version = 7.x-1.0
+project = nysed_qa
+dependencies[] = ctools
+dependencies[] = strongarm
+
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:1

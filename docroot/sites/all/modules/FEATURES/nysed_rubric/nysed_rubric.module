@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the NYSED Rubric feature.
+ */
+
+include_once 'nysed_rubric.features.inc';

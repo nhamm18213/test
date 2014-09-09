@@ -1,0 +1,82 @@
+name = Engageny
+description = Theme for EngageNY 1.5 
+package = Core
+version = VERSION
+core = 7.x
+
+stylesheets[all][] = css/system.menus.css
+stylesheets[all][] = css/system.messages.css
+stylesheets[all][] = css/system.theme.css
+stylesheets[all][] = css/system.base.css
+stylesheets[all][] = css/reset.css
+stylesheets[all][] = css/960.css
+stylesheets[all][] = css/superfish.css
+stylesheets[all][] = style.css
+stylesheets[all][] = font/CartoGothicStd/font.css
+stylesheets[all][] = css/custom.css
+stylesheets[all][] = css/colors.css
+
+scripts[] = js/jquery.easing.js
+scripts[] = js/jquery.tools.tabs.min.js
+scripts[] = js/custom.js
+scripts[] = js/css_browser_selector.js
+
+regions[top_header_left] = Top Header Left Side
+regions[top_header_right] = Top Header Right Side
+
+regions[sidebar_first]  = Left sidebar
+regions[sidebar_second] = Right sidebar
+regions[content] = Content
+regions[header] = Header
+
+regions[footer_firstcolumn] = Footer first column
+regions[footer_secondcolumn] = Footer second column
+regions[footer_thirdcolumn] = Footer third column
+regions[footer_fourthcolumn] = Footer fourth column
+
+regions[footer] = Footer
+regions[highlighted] = Highlighted
+regions[help] = Help
+regions[page_top] = Page Top
+regions[page_bottom] = Page Bottom
+
+features[] = logo
+features[] = name
+features[] = comment_user_picture
+features[] = favicon
+
+
+settings[slider_display] = 1
+settings[slider_use] = 1
+settings[slider_left_text] = ""
+settings[nivo_effect] = random
+settings[nivo_slices] = 15
+settings[nivo_boxCols] = 8
+settings[nivo_boxRows] = 4
+settings[nivo_animSpeed] = 500
+settings[nivo_pauseTime] = 3000
+settings[nivo_directionNav] = false
+settings[nivo_controlNav] = true
+settings[nivo_keyboardNav] = true
+settings[nivo_pauseOnHover] = true
+settings[nivo_captionOpacity] = 0.7
+
+settings[default_banners][1][image_path]        = banners/ThornellRd_DSC0794.jpg
+settings[default_banners][1][image_title]       = Common Core Curriculum
+settings[default_banners][1][image_description] = <h1>Common Core Curriculum</h1><h2>Check out our New York State Common Core curriculum modules in English Language Arts and Mathematics for Pre-Kindergarten through Grade 12!</h2>
+settings[default_banners][1][image_published]   = TRUE
+
+settings[default_banners][1][image_path]        = banners/HuthPhoto-KAH_5462_2.jpg
+settings[default_banners][1][image_title]       = Student Learning Objectives
+settings[default_banners][1][image_description] = <h1>Student Learning Objectives</h1><h2>Find all you need to know about Student Learning Objectives!</h2>
+settings[default_banners][1][image_published]   = TRUE
+
+settings[default_banners][1][image_path]        = banners/SLO 101.png
+settings[default_banners][1][image_title]       = Student Learning Objectives 101
+settings[default_banners][1][image_description] = <h1>Student Learning Objectives 101</h1><h2>This video provides an introduction to Student Learning Objectives (SLOs).</h2>
+settings[default_banners][1][image_published]   = TRUE
+
+settings[default_banners][1][image_path]        = banners/piggybank.jpg
+settings[default_banners][1][image_title]       = Fall is Here and School has Started!
+settings[default_banners][1][image_description] = <h1>Pumpkins in New York</h1><h2>Students are excited to get started!</h2> 
+settings[default_banners][1][image_published]   = TRUE

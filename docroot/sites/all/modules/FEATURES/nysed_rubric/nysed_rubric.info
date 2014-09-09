@@ -1,0 +1,12 @@
+name = NYSED Rubric
+description = Provide educators a way to access examples of practice aligned to state sanctioned teacher evaluation rubric
+core = 7.x
+package = Features
+php = 5.2.4
+version = 7.x-1.0
+project = nysed_rubric
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = strongarm
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:1

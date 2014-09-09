@@ -1,0 +1,15 @@
+diff --git a/collapsiblock.module b/collapsiblock.module
+index b964247..a1af3d1 100644
+--- a/collapsiblock.module
++++ b/collapsiblock.module
+@@ -136,8 +136,8 @@ function collapsiblock_form_alter(&$form, $form_state, $form_id) {
+       '#weight' => -5
+     );
+ 
+-    if (isset($settings['block-' . str_replace('_', '-', $form['module']['#value']) . '-' . str_replace('_', '-', $form['delta']['#value'])])) {
+-      $default_value = $settings['block-' . str_replace('_', '-', $form['module']['#value']) . '-' . str_replace('_', '-', $form['delta']['#value'])] ? $settings['block-' . str_replace('_', '-', $form['module']['#value']) . '-' . str_replace('_', '-', $form['delta']['#value'])] : variable_get('collapsiblock_default_state', 1);
++    if (isset($settings['block-' . str_replace('_', '-', $form['module']['#value']) . '-' . drupal_strtolower(str_replace('_', '-', $form['delta']['#value']))])) {
++      $default_value = $settings['block-' . str_replace('_', '-', $form['module']['#value']) . '-' . drupal_strtolower(str_replace('_', '-', $form['delta']['#value']))] ? $settings['block-' . str_replace('_', '-', $form['module']['#value']) . '-' . drupal_strtolower(str_replace('_', '-', $form['delta']['#value']))] : variable_get('collapsiblock_default_state', 1);
+     } else {
+       $default_value = 1;
+     }

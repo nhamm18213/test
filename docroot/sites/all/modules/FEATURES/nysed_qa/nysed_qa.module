@@ -1,0 +1,111 @@
+<?php
+/**
+ * @file
+ * Code for the NYSED QA feature.
+ */
+
+
+/**
+ *	Implements of hook_menu
+ *
+ */
+function nysed_qa_menu() {
+	$items = array();
+	$items['admin/config/nysed/qa'] = array(
+    'title' => 'QA Test Configuration',
+   'description' => 'Convenience debug configurations for QA Users',
+	 'page callback' => 'drupal_get_form',
+   'page arguments' => array('nysed_qa_admin_settings'),
+   'access arguments' => array('access administration pages'),
+   'file' => 'nysed_qa.admin.inc',
+	 'file path' => drupal_get_path('module', 'nysed_qa').'/includes',
+  );
+	return $items;
+}
+
+
+
+/**
+ *	Implements of hook_mail_alter
+ *
+ *	Redirect all emails to given mail account set in variable:nysed_qa_mail_redirect_to
+ *	if variable:nysed_qa_mail_redirect_enabled  had been set by non empty value
+ *
+ */
+function nysed_qa_mail_alter(&$message) {
+	global $user;
+
+	$mail_redirect_enabled = variable_get('nysed_qa_mail_redirect_enabled', FALSE);
+	$mail_redirect_to = variable_get('nysed_qa_mail_redirect_to', FALSE);
+
+	if ($mail_redirect_enabled && $mail_redirect_to) {
+
+		// Get original recipients
+		$original_recipient = $message['to'];
+		if ( isset($message['headers']['CC'])) {
+			$original_cc = $message['headers']['CC'];
+		}
+		if ( isset($message['headers']['Bcc'])) {
+			$original_bcc = $message['headers']['Bcc'];
+		}
+
+		// Attach original recipients information
+		$original_recipients_info = array();
+		$original_recipients_info[] = t('DEBUG: Original recipient !recipient', array('!recipient' => $message['to']));
+		if ($original_cc) {
+			$orginal_recipients_info[] = t('DEBUG: Original CC !cc', array('!cc' => $original_cc));
+		}
+		if ($original_bcc) {
+			$orginal_recipients_info[] = t('DEBUG: Original Bcc !bcc', array('!bcc' => $original_bcc));
+		}
+		if (is_array($message['body'])) {
+			$message['body'][] = theme('item_list', array('items' => $orginal_recipients_info));
+		}
+		else {
+			$message['body'] .= theme('item_list', array('items' => $orginal_recipients_info));
+		}
+
+		// Apply recipients redriection
+		$message['to'] = $mail_redirect_to;
+
+		// Remove original cc & bcc recipients
+		if ($original_cc) {
+			unset($message['headers']['CC']);
+		}
+		if ($original_bcc) {
+			unset($message['headers']['Bcc']);
+		}
+
+		// Screen notification for current test user
+		drupal_set_message('Email has been redirect to: !mail', array('!mail' => $mail_redirect_to));
+
+	}
+
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function nysed_qa_landing_page_views_api() {
+  return array("version" => "3.0");
+}
+
+function nysed_qa_views_default_views_alter(&$views) {
+	foreach ($views as $key => $view) {
+		if ($view->base_table == 'apachesolr__acquia_search_server_1') {
+			$views[$key]->base_table = 'apachesolr__solr';
+			$fields = $view->display['default']->handler->display->display_options['fields'];
+			$filters = $view->display['default']->handler->display->display_options['filters'];
+			if (is_array($fields)) {
+				foreach ($fields as $field_name => $field) {
+					$views[$key]->display['default']->handler->display->display_options['fields'][$field_name]['table'] = 'apachesolr__solr';
+				}
+			}
+			if (is_array($filters)) {
+				foreach ($filters as $filter_key => $filter) {
+					$views[$key]->display['default']->handler->display->display_options['filters'][$filter_key]['table'] = 'apachesolr__solr';
+				}
+			}
+		}
+	}
+}

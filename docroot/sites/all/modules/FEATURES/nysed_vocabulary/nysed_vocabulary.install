@@ -1,0 +1,21 @@
+<?php
+/**
+ * @file
+ * Drupal installation file.
+ */
+ 
+ /**
+  *		Current Vocab ID: 
+	*			2 -> cccs
+	*			3 -> grades
+	*			4 -> subject_values
+	*			5 -> resource_type
+	*			7 -> tags
+	*			8 -> topic
+	*			12 -> newsletter
+	*			13 -> ccls_math
+	*			14 -> ccls_ela
+	*		- 
+  */
+
+

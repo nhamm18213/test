@@ -1,0 +1,297 @@
+
+body { font: normal normal normal 12px/normal arial; color: #666; }
+
+h1{ font-size:34px; }
+h3{ font-size:26px; }
+h4{ font-size:20px; }
+h5{ font-size:18px; }
+h6{ font-size:14px; }
+#footer .block h2{
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6, #nav ul li a, blockquote cite {
+  font-family:  "CartoGothicStdRegular";
+}
+
+blockquote p {
+  font-family: "CartoGothicStdItalic";
+}
+
+a, #portfolio #filters a.current, ul.minitabs a:hover,#footer-top .block .item-list ul li h5 a:hover,.portfolio #filters a.selected { color:#ff3131; }
+
+#sidebar .hb_flickr_widget .flickr_badge_image img:hover, #footer .hb_flickr_widget .flickr_badge_image img:hover{ border-color:#ff3131; }
+
+a:hover, .entry h3.title a:hover, #post_content .meta .comment a:hover, .entry .meta .comment a:hover, #breadcrumb a:hover, #sidebar a:hover, #sidebar .hb_flickr_widget .flickr_badge_image img:hover, #footer .hb_flickr_widget .flickr_badge_image img:hover, #footer .hb_recentpost_widget .recentpost h5 a:hover, #sidebar .hb_tweet_widget #twitter_update_list li span a:hover, #footer .hb_tweet_widget #twitter_update_list li span a:hover, #comments .details .name span.date a:hover, #respond a:hover, ol.pinglist li a:hover, #portfolio .one_col h3 a:hover, #portfolio .one_col .comment a:hover, #portfolio h3.mini_title a:hover, .node h2 a:hover { color: #ff3131; }
+
+
+#slide #sleft h1 { font-size: 34px; }
+#slide #sleft h2 { font-size: 20px; }
+
+#slide #sright #texture { background: transparent url(../images/textures/noisestrip.png) repeat 0 0; }
+
+#nav { float: right !important;}
+/*body { background: #f3f3f3 url(../images/body_bg.jpg) no-repeat center center fixed; }*/
+body { background: #6D6E71 !important; }
+
+
+/* Video Library */
+.views-row {
+  position: relative;
+}
+.views-field-timestamp {
+  position: absolute;
+  top: 89px;
+  left: 0;
+}
+.views-field-timestamp .marker {
+  display: inline-block;
+  padding: 3px;
+  background-color: #618cba;
+  color: #fff;
+  text-transform: capitalize;
+}
+.video_library_length {
+  position: absolute;
+  top: 89px;
+  right: 0;
+}
+.video_library_length .hms {
+  display: inline-block;
+  background-color: #618cba;
+  color: #fff;
+  padding: 3px;
+}
+/* ela / math landing pages shared classes */
+
+.view-curriculum-modules tr {
+  background-color: white !important;
+}
+.view-Video-Library table tr,
+.view-curriculum-modules table tr {
+  border: none;
+}
+.view-Video-Library table td,
+.view-curriculum-modules table td {
+  padding: 0;
+  border: none;
+  background-color: white !important;
+}
+.view-Video-Library table,
+.view-curriculum-modules table {
+  border: none;
+}
+.ela-math-row {
+  width: 310px;
+  min-height: 135px;
+  margin: 0 15px 15px 0;
+  border: 1px solid #618cba !important;
+  border-top: 8px solid #618cba !important;
+  display: inline-block;
+  float: left;
+}
+.ela-math-row .views-field-label,
+.ela-math-row .views-field-sm-vid-Subject,
+.ela-math-row .views-field-sm-vid-Grades {
+  padding: 5px 10px;
+}
+.ela-math-row .views-field-label a,
+strong.video_library_title a {
+  color: #cc6633;
+  line-height: 18px;
+  font-size: 14px;
+  font-weight: bold;
+}
+strong.video_library_title a {
+  color: #3ab383;
+}
+.view-Video-Library .video-library-row > div {
+  width: 205px;
+  margin: 0 15px 15px 0;
+  border: 1px solid #618cba;
+  border-top: 8px solid #618cba !important;
+}
+.view-Video-Library .video_thumbnail {
+  padding: 0;
+}
+.view-Video-Library .views-field.views-field-title {
+  padding: 5px 10px 0;
+  min-height: 140px;
+}
+.view-Video-Library .views-row > div.field-content {
+  border-top: 1px solid #b7b7b7;
+  margin: 5px 10px 10px;
+  padding-top: 10px;
+  font-style: italic;
+  color: #2f2726;
+  min-height: 55px;
+}
+.ela-math-row .views-field-sm-vid-Tags {
+  border-top: 1px solid #b7b7b7;
+  margin: 5px 10px 10px;
+  padding-top: 10px;
+  font-style: italic;
+  color: #2f2726;
+}
+.view-Video-Library .view-filters .form-text {
+  width: 470px;
+  margin-top: 3px;
+}
+.pane-related-videos {
+  clear: right;
+}
+.hidden {
+  display: none;
+}
+
+.node-type-resource-videos .panel-col-first,
+.node-type-resource-video-math .panel-col-first,
+.node-type-resource-video-ela .panel-col-first {
+  position: relative;
+  width: 60%;
+}
+.node-type-resource-videos .panel-col-first .panel-col-first,
+.node-type-resource-video-math .panel-col-first .panel-col-first,
+.node-type-resource-video-ela .panel-col-first .panel-col-first {
+  width: 100%;
+}
+.node-type-resource-videos .panel-col-last,
+.node-type-resource-video-math .panel-col-last,
+.node-type-resource-video-ela .panel-col-last {
+  width: 40%;
+}
+.node-type-resource-videos .panel-col-first .panel-col-last,
+.node-type-resource-video-math .panel-col-first .panel-col-last,
+.node-type-resource-video-ela .panel-col-first .panel-col-last {
+  height: 1px;
+}
+.node-type-resource-videos .nysedpostedlogo,
+.node-type-resource-video-math .nysedpostedlogo,
+.node-type-resource-video-ela .nysedpostedlogo {
+  position: absolute;
+  top: 390px;
+  right: 0;
+}
+.node-type-resource-videos
+#widgets-element-social_media_icons_custom,
+.node-type-resource-video-math
+#widgets-element-social_media_icons_custom,
+.node-type-resource-video-ela
+#widgets-element-social_media_icons_custom {
+  display: inline;
+  width: 200px;
+}
+.node-type-resource-video-math .pane-ccls-math-block,
+.node-type-resource-video-ela .pane-ccls-math-block {
+  width: 337px;
+  float: right;
+  clear: right;
+}
+.node-type-resource-video-math .pane-ccls-math-block h2,
+.node-type-resource-video-ela .pane-ccls-math-block h2 {
+  background-color: #628DBB;
+  color: white;
+  font-size: 18px;
+  padding: 10px;
+  margin: 0;
+}
+.node-type-resource-video-math #videobody,
+.node-type-resource-video-ela #videobody {
+  width: auto;
+  float: none;
+}
+/* remove border when no left sidebar present on video resources */
+.no-sidebars #main {
+  border-left: none;
+}
+
+/* Search Results */
+
+ol.search-results {
+  margin: 0;
+  padding: 0;
+}
+
+ol.search-results li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ol.search-results li span {
+  display: none;
+}
+ol.search-results ol.search-results-grouped {
+  margin-left: 0;
+}
+
+
+/* common core curriculum page */
+.page-node-236 #page_content table td img {
+  margin-bottom: -3px;
+}
+
+/* downloadable resources block */
+#block-fieldblock-node-resource-page-default-field-attachments,
+#block-fieldblock-node-resource-page-ela-default-field-attachments {
+  background-image: none;
+  background: #3ab383 !important;
+  border-color: #3ab383 !important;
+}
+
+/* nav */
+#nav a:active,
+#nav a:link,
+#nav a {
+  color: black !important;
+}
+
+/* fix margin/padding above content on video resources */
+.node-type-resource-video-math #main,
+.node-type-resource-video-math #page_content,
+.node-type-resource-video-ela #main,
+.node-type-resource-video-ela #page_content,
+.node-type-resource-videos #main,
+.node-type-resource-videos #page_content {
+  margin-top: 0;
+}
+.node-type-resource-video-math .pane-related-items-block,
+.node-type-resource-video-math .pane-related-videos,
+.node-type-resource-video-ela .pane-related-items-block,
+.node-type-resource-video-ela .pane-related-videos,
+.node-type-resource-videos .pane-related-items-block,
+.node-type-resource-videos .pane-related-videos {
+  float: none;
+  margin: 12px 0 0 auto;
+}
+
+/* homepage */
+.front .grid_3 {
+  width: 300px;
+}
+#footer .grid_3 {
+  width: 220px !important;
+}
+
+/* sidebar menu - nolink fix */
+.region-sidebar-first ul > li > .nolink {
+  display: inline-block;
+  padding: 6px 5px;
+}
+
+/* latest updates block */
+.view-latest-updates ul {
+  margin-top: 10px;
+}
+
+/* external link class */
+.ie .region-sidebar-first #block-block-21 .content p {
+  position: relative;
+}
+.ie .region-sidebar-first #block-block-21 .content .ext {
+  position: absolute;
+  padding: 0;
+  width: 10px;
+  height: 10px;
+  left: 0;
+  bottom: -10px;
+}
